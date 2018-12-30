@@ -61,6 +61,12 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *shutdowncmd[]  = { "shutdown", "now", NULL };
 static const char *rebootcmd[]  = { "reboot", NULL };
 
+
+/* Multiple monitors */
+static const char primarydisplay[]       = "eDP-1";
+static const char secondarydisplay[]     = "DP-1";
+static const char *enabledisplay[]  = { "xrandr", "--output", secondarydisplay, "--auto", "--right-of", primarydisplay, NULL };
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
@@ -88,6 +94,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_F12,    spawn,          {.v = shutdowncmd } },
 	{ MODKEY|ShiftMask,             XK_F4,     spawn,          {.v = rebootcmd } },
+	{ MODKEY,             		XK_F5,     spawn,          {.v = enabledisplay } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
